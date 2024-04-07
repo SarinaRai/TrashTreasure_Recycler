@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            width: 200px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .container {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .container:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .analytics, .user-manager {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+        .sidebar a {
+            display: block;
+            color: #fff;
+            padding: 10px 0;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .user-action-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .user-action-button:hover {
+            background-color: #d32f2f;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logout {
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .logout:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class = "logo">TrashTreasure</h1>
+        <button class="logout">Logout</button>
+    </header>
+    <nav class="sidebar">
+        <a href="#" id="dashboard-tab">Dashboard</a>
+        <a href="#" id="analytics-tab">Analytics</a>
+        <a href="#" id="user-manager-tab">User Manager</a>
+    </nav>
+    <div class="container">
+        <div class="analytics">
+            <h2>Analytics</h2>
+            <p>Put your analytics content here...</p>
+        </div>
+        <div class="user-manager" style="display:none;">
+            <h2>User Manager</h2>
+            <table id="user-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- User data will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        document.getElementById("dashboard-tab").addEventListener("click", function(event) {
+            event.preventDefault();
+            // Add logic to navigate to the dashboard page if needed
+            alert("Navigate to the dashboard page");
+        });
+
+        document.getElementById("analytics-tab").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.querySelector(".analytics").style.display = "block";
+            document.querySelector(".user-manager").style.display = "none";
+        });
+
+        document.getElementById("user-manager-tab").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.querySelector(".analytics").style.display = "none";
+            document.querySelector(".user-manager").style.display = "block";
+            // Here you can fetch user data from your backend and populate the table dynamically
+            // Example:
+            fetchUsers();
+        });
+
+        function fetchUsers() {
+            // Example of fetching user data (replace this with your actual API call)
+            const users = [
+                { id: 1, name: "John Doe", contact:980004442,email: "john@example.com" },
+                { id: 2, name: "Jane Smith",contact:980004442, email: "jane@example.com" },
+                { id: 3, name: "Alice Johnson",contact:980004442, email: "alice@example.com" }
+            ];
+
+            const tableBody = document.querySelector("#user-table tbody");
+            tableBody.innerHTML = ""; // Clear existing data
+
+            users.forEach(user => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.contact}</td>
+                    <td>${user.email}</td>
+                    <td><button class="user-action-button" onclick="deleteUser(${user.id})">Delete</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function deleteUser(userId) {
+            // Example of deleting a user (replace this with your actual delete logic)
+            if (confirm("Are you sure you want to delete this user?")) {
+                alert("User with ID " + userId + " deleted successfully");
+                // Add logic to delete the user from the backend
+            }
+        }
+    </script>
+</body>
+</html>
