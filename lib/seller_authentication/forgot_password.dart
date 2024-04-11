@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:trashtreasure_recycler/seller_authentication/register_page.dart';
@@ -105,7 +106,13 @@ class ForgotPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: ListView(children: [
-          Image.asset('assets/logo.png'),
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('asset/logo.png'))),
+          ),
+          // Images.asset(),
           const Align(
             alignment: Alignment.center,
             child: Text(

@@ -41,88 +41,90 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Cart"),
-        backgroundColor: Color.fromARGB(255, 2, 62, 33),
+        backgroundColor: const Color(0xFF023E21),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            for (int i = 0; i < quantities.length; i++)
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        "assets/Iron.jpg",
-                        width: 100,
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (int i = 0; i < quantities.length; i++)
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Iron",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                "Quantity: ${quantities[i]}",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                "Price: \$${quantities[i] * prices[i]}",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Column(
                           children: [
+                            ElevatedButton(
+                              onPressed: () => increaseQuantity(i),
+                              child: const Text("+"),
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.green,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
                             Text(
-                              "Iron",
+                              "${quantities[i]}",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             const SizedBox(height: 10),
-                            Text(
-                              "Quantity: ${quantities[i]}",
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              "Price: \$${quantities[i] * prices[i]}",
-                              style: TextStyle(
-                                fontSize: 16,
+                            ElevatedButton(
+                              onPressed: () => decreaseQuantity(i),
+                              child: const Text("-"),
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.green,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      Column(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () => increaseQuantity(i),
-                            child: const Text("+"),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.green), // Change color here
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            "${quantities[i]}",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          ElevatedButton(
-                            onPressed: () => decreaseQuantity(i),
-                            child: const Text("-"),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.green), // Change color here
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -136,7 +138,7 @@ class _CartPageState extends State<CartPage> {
                 padding: const EdgeInsets.only(left: 20.0),
                 child: Text(
                   "Total: \$${total}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -156,8 +158,8 @@ class _CartPageState extends State<CartPage> {
                   },
                   child: const Text('Proceed to Payment'),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.green), // Change color here
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.green),
                   ),
                 ),
               ),

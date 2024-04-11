@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trashtreasure_recycler/pages/add_product.dart';
 import 'package:trashtreasure_recycler/pages/cart.dart';
 import 'package:trashtreasure_recycler/pages/chat.dart';
 import 'package:trashtreasure_recycler/pages/home_page.dart';
@@ -29,14 +30,14 @@ class _MainPageState extends State<MainPage> {
       floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 2, 62, 33),
           child: Icon(
-            Icons.chat,
+            Icons.add,
             color: Colors.white,
           ),
           onPressed: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChatPage(),
+                  builder: (context) => AddProduct(),
                 ));
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -122,11 +123,11 @@ class _MainPageState extends State<MainPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.shopping_cart_checkout_rounded,
+                          Icons.chat_bubble_outline_outlined,
                           color:
                               currentTab == 3 ? Colors.black : Colors.white70,
                         ),
-                        Text('Cart',
+                        Text('Chat',
                             style: TextStyle(
                               color: currentTab == 3
                                   ? Colors.black

@@ -21,8 +21,7 @@ class _AddProductState extends State<AddProduct> {
 
   Future getImage() async {
     final pickedFile =
-        // ignore: deprecated_member_use
-        await ImagePicker().getImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
@@ -99,6 +98,7 @@ class _AddProductState extends State<AddProduct> {
       // Handle failure
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +106,7 @@ class _AddProductState extends State<AddProduct> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: Text(
                 AppLocalizations.of(context)!.add,
                 style: TextStyle(
@@ -116,7 +116,7 @@ class _AddProductState extends State<AddProduct> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
+              padding: EdgeInsets.fromLTRB(10, 50, 10, 0),
               child: SizedBox(
                 height: 50,
                 child: TextField(
@@ -158,18 +158,22 @@ class _AddProductState extends State<AddProduct> {
             Padding(
               padding: EdgeInsets.fromLTRB(10, 35, 10, 0),
               child: SizedBox(
-                height: 50,
+                height: 120, // Increased height to accommodate more lines
                 child: TextField(
+                  maxLines: null, // Allow unlimited lines
                   controller: productDescriptionController,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      hintText: AppLocalizations.of(context)!.description),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    hintText: AppLocalizations.of(context)!.description,
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 10), // Added padding
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
               child: InkWell(
                 onTap: getImage,
                 child: Container(
@@ -198,28 +202,24 @@ class _AddProductState extends State<AddProduct> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  height: 50,
-                  width: 370,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Color.fromARGB(255, 2, 62, 33)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)))),
-                    child: Text(
-                      AppLocalizations.of(context)!.add,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    onPressed: () => addProduct(context),
-                  )),
-            ),
+            Container(
+                height: 50,
+                width: 370,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 2, 62, 33)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)))),
+                  child: Text(
+                    AppLocalizations.of(context)!.add,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () => addProduct(context),
+                )),
           ],
         ),
       ),

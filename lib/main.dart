@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:trashtreasure_recycler/controller/language_controller.dart';
+import 'package:trashtreasure_recycler/pages/add_product.dart';
 import 'package:trashtreasure_recycler/seller_authentication/login_page.dart';
 import 'package:trashtreasure_recycler/seller_authentication/register_page.dart';
 import 'package:trashtreasure_recycler/splash_screen/splash_page.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
               '/login': (context) => LoginPage(),
               '/register': (context) => RegisterPage(),
               '/splash': (context) => SplashPage(),
+              '/add': (context) => AddProduct()
             },
           );
         }));

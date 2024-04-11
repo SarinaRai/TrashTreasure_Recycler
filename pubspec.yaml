@@ -30,9 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  image_picker: ^0.8.4+1
-  provider: ^6.1.1
-  shared_preferences: ^2.2.2
+
   intl: ^0.18.1
   flutter_localizations: 
     sdk: flutter
@@ -42,6 +40,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: ^0.13.0
+  image_picker: ^1.0.7
+  provider: ^6.1.2
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
