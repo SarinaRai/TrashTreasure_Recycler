@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:trashtreasure_recycler/pages/add_product.dart';
-import 'package:trashtreasure_recycler/pages/cart.dart';
 import 'package:trashtreasure_recycler/pages/chat.dart';
 import 'package:trashtreasure_recycler/pages/home_page.dart';
 import 'package:trashtreasure_recycler/pages/product_page.dart';
+
+import 'package:trashtreasure_recycler/pages/side_pages/profile.dart';
+import 'package:trashtreasure_recycler/pages/trash_page.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({super.key});
@@ -16,9 +19,10 @@ class _MainPageState extends State<MainPage> {
   int currentTab = 0;
   final List<Widget> screens = [
     HomePage(),
-    CartPage(),
-    ChatPage(),
     ProductPage(),
+    ChatPage(),
+    TrashSellPage(),
+    AddProduct(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -79,6 +83,32 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = TrashSellPage();
+                        currentTab = 1;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.delete,
+                          color:
+                              currentTab == 1 ? Colors.black : Colors.white70,
+                        ),
+                        Text('Trash',
+                            style: TextStyle(
+                              color: currentTab == 1
+                                  ? Colors.black
+                                  : Colors.white70,
+                              fontSize: 15,
+                            ))
+                      ],
+                    ),
+                  )
                 ],
               ),
               //right bottomnavbar
@@ -115,7 +145,7 @@ class _MainPageState extends State<MainPage> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = CartPage();
+                        currentScreen = ChatPage();
                         currentTab = 3;
                       });
                     },
@@ -123,11 +153,11 @@ class _MainPageState extends State<MainPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.chat_bubble_outline_outlined,
+                          Icons.chat,
                           color:
                               currentTab == 3 ? Colors.black : Colors.white70,
                         ),
-                        Text('Chat',
+                        Text('chat',
                             style: TextStyle(
                               color: currentTab == 3
                                   ? Colors.black

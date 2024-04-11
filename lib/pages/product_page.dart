@@ -55,6 +55,7 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 2, 62, 33),
         title: Text('Products'),
       ),
       body: ListView.builder(

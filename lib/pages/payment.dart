@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-class PaymentPage extends StatelessWidget {
+class PaymentPage extends StatefulWidget {
   final int totalAmount; //
 
   const PaymentPage({Key? key, required this.totalAmount}) : super(key: key);
 
+  @override
+  State<PaymentPage> createState() => _PaymentPageState();
+}
+
+class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +22,7 @@ class PaymentPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Total Amount: ${totalAmount != null ? '\$$totalAmount' : 'N/A'}",
+              "Total Amount: ${widget.totalAmount != null ? '\$${widget.totalAmount}' : 'N/A'}",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
