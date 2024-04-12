@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-const String _baseUrl = 'http://192.168.56.1:5000';
+const String _baseUrl = 'http://192.168.18.202:5000';
 const String _placeholderImagePath =
     'assets/placeholder.jpg'; // Ensure you have a placeholder image in your assets
 
@@ -22,17 +22,18 @@ class _ProductPageState extends State<ProductPage> {
 
   String formatUrl(String? url) {
     if (url == null || url.isEmpty) return _placeholderImagePath;
-    if (url.startsWith('http')) return url; // Return the URL if it's a full URL
-    return '$_baseUrl/$url'; // Return the concatenated URL if it's a partial path
+    if (url.startsWith('http')) return url;
+    return '$_baseUrl/$url';
   }
 
   Widget getImage(String? imageUrl) {
-    print(imageUrl);
     final url = formatUrl(imageUrl);
-    return Image.network(url, errorBuilder: (context, error, stackTrace) {
-      // If the network image fails to load, use a placeholder
-      return Image.asset(_placeholderImagePath);
-    });
+    return Image.network(
+      url,
+      errorBuilder: (context, error, stackTrace) {
+        return Image.asset(_placeholderImagePath);
+      },
+    );
   }
 
   Future<void> fetchData() async {
@@ -40,6 +41,7 @@ class _ProductPageState extends State<ProductPage> {
       final response = await http.get(Uri.parse('$_baseUrl/products'));
       if (response.statusCode == 200) {
         setState(() {
+          print(data);
           data = json.decode(response.body);
         });
       } else {

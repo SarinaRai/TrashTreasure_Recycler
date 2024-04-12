@@ -5,7 +5,6 @@ import 'package:trashtreasure_recycler/pages/chat.dart';
 import 'package:trashtreasure_recycler/pages/home_page.dart';
 import 'package:trashtreasure_recycler/pages/product_page.dart';
 
-import 'package:trashtreasure_recycler/pages/side_pages/profile.dart';
 import 'package:trashtreasure_recycler/pages/trash_page.dart';
 
 class MainPage extends StatefulWidget {

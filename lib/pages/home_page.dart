@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trashtreasure_recycler/pages/side_pages/profile.dart';
 import 'package:trashtreasure_recycler/seller_authentication/login_page.dart';
+import 'package:trashtreasure_recycler/side_pages/profile.dart';
 import '../static/static_shared_preferences.dart';
 
 class Product {
@@ -35,7 +35,7 @@ class Product {
   }
 }
 
-const String _baseUrl = 'http://192.168.56.1:5000';
+const String _baseUrl = 'http://192.168.18.202:5000';
 const String _placeholderImagePath = 'assets/placeholder.jpg';
 
 class HomePage extends StatefulWidget {
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
   void search(String query) async {
     try {
       final response = await http
-          .get(Uri.parse('http://192.168.56.1:5000/search?q=$query]'));
+          .get(Uri.parse('http://192.168.18.202:5000/search?q=$query]'));
       if (response.statusCode == 200) {
         setState(() {
           searchResults = List<String>.from(json.decode(response.body));
@@ -202,7 +202,6 @@ class _HomePageState extends State<HomePage> {
               onTap: () async {
                 final SharedPreferences prefs =
                     await UserStoragePreferences.getPreferences();
-
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
@@ -408,7 +407,7 @@ class ProductDetailsPage extends StatelessWidget {
 
 class ProductService {
   static const String baseUrl =
-      'http://192.168.56.1:5000'; // Adjust this to your actual backend URL
+      'http://192.168.18.202:5000'; // Adjust this to your actual backend URL
 
   static Future<List<Product>> searchProducts(
       String keyword, String filter) async {

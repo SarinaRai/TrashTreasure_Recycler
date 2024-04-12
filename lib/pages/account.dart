@@ -32,7 +32,7 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   Future addProduct(context) async {
-    final Uri uri = Uri.parse('http://192.168.56.1:5000/addProduct');
+    final Uri uri = Uri.parse('http://192.168.18.202:5000/addProduct');
     final request = http.MultipartRequest('POST', uri);
     request.fields['product_name'] = productNameController.text;
     request.fields['product_price'] = productPriceController.text;

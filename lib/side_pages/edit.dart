@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:trashtreasure_recycler/pages/side_pages/profile.dart';
+import 'package:trashtreasure_recycler/side_pages/profile.dart';
 
 class EditPage extends StatelessWidget {
   EditPage({super.key});
@@ -10,7 +10,7 @@ class EditPage extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   Future<void> updateInfo(context) async {
-    String url = 'http://192.168.56.1:5000/update-info';
+    String url = 'http://192.168.18.202:5000/update-info';
 
     Map<String, String> loginData = {
       'email': emailController.text,

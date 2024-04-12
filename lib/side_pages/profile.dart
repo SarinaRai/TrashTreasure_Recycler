@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:trashtreasure_recycler/pages/side_pages/edit.dart';
 import 'package:trashtreasure_recycler/seller_authentication/login_page.dart';
+import 'package:trashtreasure_recycler/side_pages/edit.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> fetchUserData() async {
-    String url = 'http://192.168.56.1:5000/profile';
+    String url = 'http://192.168.18.202:5000/profile';
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
   TextEditingController emailController = TextEditingController();
 
   Future<void> changePassword(BuildContext context) async {
-    String url = "http://192.168.56.1:5000/change-password/";
+    String url = "http://192.168.18.202:5000/change-password/";
 
     Map<String, String> resetData = {
       'email': emailController.text,

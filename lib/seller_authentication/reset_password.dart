@@ -17,7 +17,7 @@ class ResetPage extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
 
   Future<void> recoverPassword(BuildContext context) async {
-    String url = "http://192.168.56.1:5000/reset-password/";
+    String url = "http://192.168.18.202:5000/reset-password/";
 
     Map<String, String> resetData = {
       'email': emailController.text,

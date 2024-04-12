@@ -3,9 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:trashtreasure_recycler/pages/chat.dart';
-import 'package:trashtreasure_recycler/pages/payment.dart';
 
-const String _baseUrl = 'http://192.168.56.1:5000';
+const String _baseUrl = 'http://192.168.18.202:5000';
 const String _placeholderImagePath = 'assets/placeholder.jpg';
 
 class TrashSellPage extends StatefulWidget {
